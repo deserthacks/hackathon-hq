@@ -1,0 +1,25 @@
+{
+  "name": "hackathon-hq",
+  "version": "0.0.0",
+  "description": "Node.js application for running hackathons",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deserthacks/hackathon-hq"
+  },
+  "keywords": [
+    "hackathon",
+    "node",
+    "mongo",
+    "express"
+  ],
+  "author": "Jack Ketcham <jack@jackketcham.com> (http://jackketcham.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/deserthacks/hackathon-hq/issues"
+  },
+  "homepage": "https://github.com/deserthacks/hackathon-hq"
+}
