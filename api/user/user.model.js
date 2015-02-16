@@ -25,7 +25,12 @@ var UserSchema = new Schema({
   passwordDigest: String,
   provider: { type: String, default: 'local' },
 
-  hackathons: [],
+  applications: [{
+    type: Schema.Types.ObjectId, ref: 'Application'
+  }],
+  hackathons: [{
+    type: Schema.Types.ObjectId, ref: 'Attendee'
+  }],
 
   createdAt: { type: Date, default: Date.now }
 });

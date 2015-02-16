@@ -19,7 +19,7 @@ router.get('/me', auth.authenticated(), controller.me);
 router.get('/:id', controller.show);
 
 // Update
-router.put('/:id', auth.authenticated(), controller.authenticateSelf, controller.updateProfile);
+router.put('/:id', auth.authenticated(), controller.authenticateSelf, controller.update);
 router.put('/:id/password', auth.authenticated(), controller.authenticateSelf, controller.changePassword);
 
 // Delete
