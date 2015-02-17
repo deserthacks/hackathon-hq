@@ -8,10 +8,10 @@ var controller = require('./attendee.controller'),
 var router = express.Router();
 
 // Param
-router.param('id', controller.findUser);
+router.param('id', controller.findAttendee);
 
 // Create
-router.post('/', auth.authenticated(), auth.hasRole('admin'), controller.create);
+router.post('/', auth.authenticated(), controller.applicationApproved, controller.create);
 
 // Read
 router.get('/', controller.index);
@@ -23,11 +23,6 @@ router.put('/:id/checkin', auth.authenticated(), controller.updateCheckin);
 
 // Delete
 router.delete('/:id', auth.authenticated(), controller.authenticateSelf, controller.destroy);
-
-// Collections
-
-
-// Actions
 
 
 module.exports = router;

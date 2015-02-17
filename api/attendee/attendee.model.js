@@ -12,6 +12,7 @@ var AttendeeSchema = new Schema({
   // Attendee information
   team: { type: Schema.Types.ObjectId, ref: 'Team', sparse: true },
   resume: { type: String },
+  phone: { type: String },
 
   // Administrative
   hackathon: { type: Schema.Types.ObjectId, ref: 'Hackathon', required: true, index: true },
@@ -35,6 +36,13 @@ AttendeeSchema
   .get(function() {
     if(!this.role) return null;
     return this.role === 'organizer';
+  });
+
+AttendeeSchema
+  .virtual('isVolunteer')
+  .get(function() {
+    if(!this.role) return null;
+    return this.role === 'volunteer';
   });
 
 /////////////////

@@ -62,9 +62,6 @@ var AttendeeController = {
     });
   },
 
-  /** Collections */
-
-
   /** Helpers */
 
   authenticateSelf: function(req, res, next) {
@@ -72,11 +69,24 @@ var AttendeeController = {
     next(new HttpError('insufficient permissions', 403));
   },
 
-  findUser: function(req, res, next){
-    User.findById(req.params.id, function(err, user) {
+  /** Makes sure application exists and was approved */
+  applicationApproved: function(req, res, next) {
+    this.model('Application').findOne({ hackathon: req.body.hackthon, user: req.user._id }, function(err, application) {
       if(err) return next(err);
-      if(!user) return next(new HttpError('not found', 404));
-      req.user = user;
+      if(!application) return next(new HttpError('application does not exist', 400));
+
+      if(application.approved) {
+        return next();
+      }
+      next(new HttpError('application was not approved', 400));
+    });
+  },
+
+  findAttendee: function(req, res, next){
+    Attendee.findById(req.params.id, function(err, attendee) {
+      if(err) return next(err);
+      if(!attendee) return next(new HttpError('not found', 404));
+      req.attendee = attendee;
       next();
     });
   }
