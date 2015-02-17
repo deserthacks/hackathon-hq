@@ -4,6 +4,7 @@ var _ = require('lodash'),
     async = require('async'),
     mongoose = require('mongoose'),
     path = require('path'),
+    HttpError = require('http-error').HttpError,
     Schema = mongoose.Schema;
 
 var config = require('../../config');
@@ -11,7 +12,7 @@ var config = require('../../config');
 var ApplicationSchema = new Schema({
   // Eventual application form fields here
 
-  hackathon: { type: Schema.Types.ObjectId, ref: 'Hackathon', required: true, index: true },
+  hackathon: { type: Schema.Types.ObjectId, ref: 'Hackathon', required: true },
   user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
 
   approved: { type: Boolean },
@@ -21,6 +22,10 @@ var ApplicationSchema = new Schema({
   approvedAt: { type: Date },
   rejectedAt: { type: Date }
 });
+
+/** Index */
+
+ApplicationSchema.index({ hackathon: 1, user: 1 }, { unique: true });
 
 //////////////
 // Virtuals //
@@ -41,7 +46,18 @@ ApplicationSchema
 // Validations //
 /////////////////
 
-// none
+ApplicationSchema
+
+  /** Ensure only one application per user per hackathon */
+  .pre('save', function(next) {
+    this.model('Application').find({ hackthon: this.hackathon._id, user: this.user._id }, function(err, applications) {
+      if(err) return next(err);
+      if(applications <= 1) {
+        return next();
+      }
+      next(new HttpError('cannot submit more than one application for a hackathon', 400));
+    });
+  });
 
 ///////////
 // Hooks //

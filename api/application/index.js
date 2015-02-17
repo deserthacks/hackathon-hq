@@ -24,7 +24,7 @@ router.put('/:id', auth.authenticated(), controller.authenticateSelf, controller
 router.delete('/:id', auth.authenticated(), controller.authenticateSelf, controller.destroy);
 
 // Actions
-router.put('/:id/approval', auth.authenticated(), auth.hasRole('admin'), controller.approveApplication);
-router.put('/:id/rejection', auth.authenticated(), auth.hasRole('admin'), controller.rejectApplication);
+router.post('/:id/approval', auth.authenticated(), auth.hasRole('admin'), controller.approveApplication);
+router.post('/:id/rejection', auth.authenticated(), auth.hasRole('admin'), controller.rejectApplication);
 
 module.exports = router;
