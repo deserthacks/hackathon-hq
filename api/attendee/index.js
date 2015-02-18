@@ -19,7 +19,7 @@ router.get('/:id', controller.show);
 
 // Update
 router.put('/:id', auth.authenticated(), controller.authenticateSelf, controller.update);
-router.put('/:id/checkin', auth.authenticated(), controller.updateCheckin);
+router.put('/:id/checkin', auth.authenticated(), controller.checkin);
 
 // Delete
 router.delete('/:id', auth.authenticated(), controller.authenticateSelf, controller.destroy);

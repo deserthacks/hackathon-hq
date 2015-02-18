@@ -4,6 +4,7 @@ var _ = require('lodash'),
     async = require('async'),
     mongoose = require('mongoose'),
     path = require('path'),
+    HttpError = require('http-error').HttpError,
     Schema = mongoose.Schema;
 
 var config = require('../../config');
@@ -15,7 +16,7 @@ var AttendeeSchema = new Schema({
   phone: { type: String },
 
   // Administrative
-  hackathon: { type: Schema.Types.ObjectId, ref: 'Hackathon', required: true, index: true },
+  hackathon: { type: Schema.Types.ObjectId, ref: 'Hackathon', required: true },
   user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   role: {
     type: String,
@@ -26,6 +27,12 @@ var AttendeeSchema = new Schema({
 
   createdAt: { type: Date, default: Date.now }
 });
+
+///////////
+// Index //
+///////////
+
+AttendeeSchema.index({ hackathon: 1, user: 1}, { unique: true });
 
 //////////////
 // Virtuals //
@@ -49,7 +56,18 @@ AttendeeSchema
 // Validations //
 /////////////////
 
-// none
+AttendeeSchema
+
+  /** Ensure there is only one attendee per user per hackthon */
+  .pre('save', function(next) {
+    this.model('Attendee').find({ hackathon: this.hackathon, user: this.user }, function(err, attendee) {
+      if(err) return next(err);
+      if(attendee) {
+        return next(new HttpError('attendee already exists for this user and hackthon', 400));
+      }
+      next();
+    });
+  });
 
 ///////////
 // Hooks //

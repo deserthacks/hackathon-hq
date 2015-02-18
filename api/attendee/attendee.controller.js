@@ -49,6 +49,14 @@ var AttendeeController = {
     });
   },
 
+  checkin: function(req, res, next) {
+    req.attendee.set({ path: 'checkedIn' }, true, Boolean);
+    req.attendee.save(function(err, attendee) {
+      if(err) return next(err);
+      res.status(200);
+    });
+  },
+
   /** Delete */
 
   destroy: function(req, res, next) {
