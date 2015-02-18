@@ -10,7 +10,10 @@ module.exports = function(app) {
   app.use('/auth', require('./auth'));
 
   // Main routes
-  app.use('/users', require('./api/user'));
+  app.use('/api/users', require('./api/user'));
+  app.use('/api/applications', require('./api/application'));
+  app.use('/api/attendees', require('./api/attendee'));
+  app.use('/api/hackathons', require('./api/hackathon'));
   //app.use('/admin', require('./api/admin'));
 
   app.get('/', function(req, res) {
