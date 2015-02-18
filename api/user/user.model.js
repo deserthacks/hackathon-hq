@@ -20,7 +20,7 @@ var UserSchema = new Schema({
 
   role: {
     type: String,
-    enum: config.userRoles,
+    enum: config.users.roles,
     default: 'user'
   },
   passwordDigest: String,
@@ -73,7 +73,14 @@ UserSchema
 UserSchema
   .virtual('profile')
   .get(function() {
-    return this.only('_id', 'firstName', 'lastName', 'email', 'bio', 'location', 'hackathons');
+    return {
+      '_id': this._id,
+      'firstName': this.firstName,
+      'lastName': this.lastName,
+      'email': this.email,
+      'location': this.location,
+      'bio': this.bio
+    }
   });
 
 // Validations

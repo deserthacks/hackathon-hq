@@ -91,6 +91,21 @@ var UserController = {
 
   /** Collections */
 
+  getHackathons: function(req, res, next) {
+    req.user.populate({ path: 'hackathons', model: 'Attendee' }, function(err, attendees) {
+      if(err) return next(err);
+      if(!attendees) return next(new HttpError('user has not been an attendee at a hackathon', 400));
+      res.json(attendees);
+    });
+  },
+
+  getApplications: function(req, res, next) {
+    req.user.populate({ path: 'applications', model: 'Application' }, function(err, applications) {
+      if(err) return next(err);
+      if(!applications) return next(new HttpError('user does not have any applications', 400));
+      res.json(applications);
+    });
+  },
 
   /** Helpers */
 

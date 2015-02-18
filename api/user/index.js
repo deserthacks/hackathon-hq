@@ -28,8 +28,6 @@ router.delete('/:id', auth.authenticated(), controller.authenticateSelf, control
 
 // Collections
 router.get('/:id/hackathons', controller.getHackathons);
-
-// Actions
-
+//router.get('/:id/applications', auth.authenticated(), auth.authenticateSelf, controller.getApplications);
 
 module.exports = router;
