@@ -1,0 +1,20 @@
+{
+  "bitwise": true,
+  "camelcase": true,
+  "curly": false,
+  "eqeqeq": true,
+  "forin": true,
+  "freeze": true,
+  "funcscope": false,
+  "globals": {},
+  "immed": true,
+  "maxlen": 200,
+  "maxparams": 4,
+  "noarg": true,
+  "noempty": true,
+  "quotmark": "single",
+  "undef": true,
+  "unused": true,
+  "node": true,
+  "mocha": true
+}
