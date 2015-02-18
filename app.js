@@ -3,7 +3,7 @@
 var express = require('express'),
     mongoose = require('mongoose');
 
-var config = require('config');
+var config = require('./config');
 
 mongoose.connect(config.mongodb.uri, config.mongodb.options);
 

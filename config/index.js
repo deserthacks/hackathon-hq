@@ -91,6 +91,16 @@ var config = {
     roles: ['hacker', 'mentor', 'recruiter', 'volunteer', 'organizer']
   },
 
+  email: {
+    templates: {
+      verify: '',
+      registration: '',
+      attendee: '',
+      team: '',
+      decision: ''
+    }
+  },
+
   /** @type {Object} AWS information */
   awsS3: {
     key:      process.env.AWS_S3_KEY || '',
@@ -98,6 +108,11 @@ var config = {
     bucket:   process.env.AWS_S3_BUCKET || '',
     region:   process.env.AWS_REGION || '',
     path:     'hackathon/'
+  },
+
+  sendgrid: {
+    api_user: process.env.SENDGRID_API_USER || '',
+    api_key:  process.env.SENDGRID_API_KEY || ''
   }
 };
 
