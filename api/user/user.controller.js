@@ -13,7 +13,8 @@ var UserController = {
   /** Create */
 
   create: function(req, res, next) {
-    User.safeCreate(req.body, { password: req.body.password }, function(err, user) {
+    console.log(req.body);
+    User.create(req.body, function(err, user) {
       if(err) return next(err);
       res.status(201);
       auth.createToken(res, user);

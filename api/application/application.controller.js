@@ -13,7 +13,7 @@ var ApplicationController = {
   /** Create */
 
   create: function(req, res, next) {
-    Application.safeCreate(req.body, function(err, application) {
+    Application.create(req.body, function(err, application) {
       if(err) return next(err);
       res.status(201);
     });

@@ -13,7 +13,7 @@ var AttendeeController = {
   /** Create */
 
   create: function(req, res, next) {
-    Attendee.safeCreate(req.body, function(err, attendee) {
+    Attendee.create(req.body, function(err, attendee) {
       if(err) return next(err);
       res.status(201);
     });
