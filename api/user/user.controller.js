@@ -5,6 +5,7 @@ var _ = require('lodash'),
     HttpError = require('http-error').HttpError;
 
 var auth = require('../../auth/auth.helpers'),
+    mail = require('../../mail'),
     config = require('../../config'),
     User = require('./user.model');
 
@@ -13,10 +14,10 @@ var UserController = {
   /** Create */
 
   create: function(req, res, next) {
-    console.log(req.body);
     User.create(req.body, function(err, user) {
       if(err) return next(err);
       res.status(201);
+      mail.verifyEmail(user);
       auth.createToken(res, user);
     });
   },
@@ -53,6 +54,20 @@ var UserController = {
         return res.json(200, user);
       });
     });
+  },
+
+  verifyEmail: function(req, res, next) {
+    var userKey = req.body.key;
+    if(userKey == req.user.verificationKey) {
+      req.user.set({ path: 'verified' }, true, Boolean);
+      req.user.save(function(err, user) {
+        if(err) return next(err);
+
+        mail.onRegistration(user);
+      });
+    } else {
+      return next(new HttpError('invalid verification key', 400));
+    }
   },
 
   changePassword: function(req, res, next) {

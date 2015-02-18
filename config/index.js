@@ -97,6 +97,7 @@ var config = {
       registration: '',
       attendee: '',
       team: '',
+      application: '',
       decision: ''
     }
   },

@@ -3,6 +3,7 @@
 var _ = require('lodash'),
     async = require('async'),
     bcrypt = require('bcrypt'),
+    crypto = require('crypto'),
     mongoose = require('mongoose'),
     path = require('path'),
     Schema = mongoose.Schema;
@@ -24,6 +25,8 @@ var UserSchema = new Schema({
   },
   passwordDigest: String,
   provider: { type: String, default: 'local' },
+  verified: { type: Boolean, default: false },
+  verificationString: { type: String },
 
   applications: [{
     type: Schema.Types.ObjectId, ref: 'Application'
@@ -92,5 +95,19 @@ UserSchema
     if(config.users.providers.indexOf(this.provider) >= 0) return true;
     return passwordDigest.length;
   }, 'password cannot be blank');
+
+///////////
+// Hooks //
+///////////
+
+UserSchema
+
+  /** Set the verification string for a user */
+  .pre('save', function(next) {
+    if(!this.isNew) return next();
+    var key = crypto.randomBytes(7).toString('hex');
+    this.model('User')
+      .update({ _id: this.user }, { $set: { verificationString: key } }, next());
+  });
 
 module.exports = mongoose.model('User', UserSchema);

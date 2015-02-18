@@ -5,6 +5,7 @@ var _ = require('lodash'),
     HttpError = require('http-error').HttpError;
 
 var auth = require('../../auth/auth.helpers'),
+    mail = require('../../mail'),
     config = require('../../config'),
     Application = require('./application.model');
 
@@ -16,6 +17,7 @@ var ApplicationController = {
     Application.create(req.body, function(err, application) {
       if(err) return next(err);
       res.status(201);
+      mail.onApplicationSubmitted(req.user, application);
     });
   },
 
