@@ -1,3 +1,28 @@
+# OS X
+.DS_Store*
+Icon?
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+.directory
+*~
+
+# Other
 .tmp
-node_modules
 config/local.env.js
+
+# npm
+node_modules
+*.log
+*.gz
+
+
+# Coveralls
+coverage
+
+# Benchmarking
+benchmarks/graphs
