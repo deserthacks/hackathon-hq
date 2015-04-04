@@ -2,8 +2,7 @@
 
 var HttpError = require('http-error').HttpError;
 
-var auth = require('./auth/auth.middleware'),
-    config = require('./config');
+var auth = require('./auth/auth.middleware');
 
 module.exports = function(app) {
   // Authentication
@@ -11,10 +10,10 @@ module.exports = function(app) {
   app.use('/auth', require('./auth'));
 
   // Main routes
-  app.use('/users', require('./api/user'));
-  app.use('/applications', require('./api/application'));
-  app.use('/attendees', require('./api/attendee'));
-  app.use('/hackathons', require('./api/hackathon'));
+  app.use('/api/users', require('./api/user'));
+  app.use('/api/applications', require('./api/application'));
+  app.use('/api/attendees', require('./api/attendee'));
+  app.use('/api/hackathons', require('./api/hackathon'));
   //app.use('/admin', require('./api/admin'));
 
   app.get('/', function(req, res) {
