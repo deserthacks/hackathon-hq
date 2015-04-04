@@ -43,6 +43,7 @@
     "passport-github": "^0.1.5",
     "passport-local": "^1.0.0",
     "path": "^0.11.14",
+    "pebble-api": "0.0.5",
     "sendgrid": "^1.6.0",
     "skipper": "^0.5.5",
     "smtpapi": "^1.1.0",
