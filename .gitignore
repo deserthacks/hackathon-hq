@@ -13,7 +13,7 @@ Desktop.ini
 
 # Other
 .tmp
-config/local.env.js
+local.env.js
 
 # npm
 node_modules
