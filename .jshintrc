@@ -1,6 +1,6 @@
 {
   "bitwise": true,
-  "camelcase": true,
+  "camelcase": false,
   "curly": false,
   "eqeqeq": true,
   "forin": true,
@@ -16,5 +16,6 @@
   "undef": true,
   "unused": true,
   "node": true,
+  "sub": true,
   "mocha": true
 }
