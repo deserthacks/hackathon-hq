@@ -1,6 +1,6 @@
 {
   "name": "hackathon-hq",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Node.js application for running hackathons",
   "main": "lib/app.js",
   "scripts": {
