@@ -1,6 +1,6 @@
 {
   "name": "hackathon-hq",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Node.js application for running hackathons",
   "main": "lib/app.js",
   "scripts": {
@@ -26,6 +26,7 @@
   "dependencies": {
     "async": "^0.9.0",
     "bcrypt": "^0.8.1",
+    "chance": "^0.7.6",
     "composable-middleware": "^0.3.0",
     "compression": "^1.4.0",
     "cookie-parser": "^1.3.3",
@@ -36,13 +37,15 @@
     "jsonwebtoken": "^3.2.2",
     "lodash": "^3.2.0",
     "method-override": "^2.3.1",
-    "mongoose": "^3.8.23",
+    "mongoose": "^4.1.0",
     "morgan": "^1.5.1",
     "nodemailer": "^1.3.0",
     "passport": "^0.2.1",
     "passport-github": "^0.1.5",
     "passport-local": "^1.0.0",
     "path": "^0.11.14",
+    "pebble-api": "0.0.5",
+    "sendgrid": "^1.6.0",
     "skipper": "^0.5.5",
     "smtpapi": "^1.1.0",
     "socket.io": "^1.3.4",
@@ -51,8 +54,12 @@
   },
   "devDependencies": {
     "chai": "^2.0.0",
+    "coveralls": "^2.11.2",
+    "factory-girl": "^1.1.4",
+    "factory-lady": "^0.1.0",
     "istanbul": "^0.3.5",
     "mocha": "^2.1.0",
+    "nock": "^0.59.1",
     "sinon": "^1.12.2",
     "supertest": "^0.15.0"
   }
