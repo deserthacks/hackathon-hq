@@ -1,6 +1,6 @@
 {
   "name": "hackathon-hq",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Node.js application for running hackathons",
   "main": "lib/app.js",
   "scripts": {
@@ -54,6 +54,7 @@
   },
   "devDependencies": {
     "chai": "^2.0.0",
+    "codeclimate-test-reporter": "^0.1.0",
     "coveralls": "^2.11.2",
     "factory-girl": "^1.1.4",
     "factory-lady": "^0.1.0",
