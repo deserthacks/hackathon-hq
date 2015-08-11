@@ -2,8 +2,17 @@
   "name": "hackathon-hq",
   "version": "0.1.1",
   "description": "Node.js application for running hackathons",
-  "main": "lib/app.js",
+  "author": "Jack Ketcham <jack@jackketcham.com> (http://jackketcham.com/)",
+  "contributors": [],
+  "homepage": "https://github.com/deserthacks/hackathon-hq",
+  "keywords": [
+    "hackathon",
+    "node",
+    "mongo",
+    "express"
+  ],
   "scripts": {
+    "start": "node lib/app.js",
     "test": "mocha --require lib/test/support/env --reporter spec --bail --check-leaks ./lib/test/ ./lib/api/*/test/*.js",
     "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --require lib/test/support/env --reporter spec --check-leaks ./lib/test/ ./lib/api/*/test/*.js"
   },
@@ -11,18 +20,9 @@
     "type": "git",
     "url": "https://github.com/deserthacks/hackathon-hq"
   },
-  "keywords": [
-    "hackathon",
-    "node",
-    "mongo",
-    "express"
-  ],
-  "author": "Jack Ketcham <jack@jackketcham.com> (http://jackketcham.com/)",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/deserthacks/hackathon-hq/issues"
   },
-  "homepage": "https://github.com/deserthacks/hackathon-hq",
   "dependencies": {
     "async": "^1.4.0",
     "bcrypt": "^0.8.1",
@@ -63,5 +63,6 @@
     "nock": "^0.59.1",
     "sinon": "^1.12.2",
     "supertest": "^0.15.0"
-  }
+  },
+  "license": "MIT"
 }
