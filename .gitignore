@@ -17,9 +17,9 @@ local.env.js
 
 # npm
 node_modules
+
 *.log
 *.gz
-
 
 # Coveralls
 coverage
